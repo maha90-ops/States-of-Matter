@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>رحلة في عالم حالات المادة</title>
+  <meta name="description" content="منصة تعليمية تفاعلية لطلبة المرحلة الأساسية الدنيا لتعلم حالات المادة: الصلبة والسائلة والغازية وتحولاتها، مع أنشطة ونقاط وشهادة إنجاز.">
+  <meta name="theme-color" content="#0288d1">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧪</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2:wght@500;600;700;800&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <link rel="preload" as="image" href="assets/images/hero.webp">
+  <link rel="stylesheet" href="src/styles/main.css">
+  <script type="module" src="src/main.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#app">انتقل إلى المحتوى</a>
+
+  <!-- خلفية: جسيمات وجزيئات عائمة خفيفة -->
+  <div class="bg-orbs" aria-hidden="true">
+    <span class="orb o1"></span><span class="orb o2"></span><span class="orb o3"></span>
+    <span class="orb o4"></span><span class="orb o5"></span><span class="orb o6"></span>
+    <svg class="bg-mol m1" viewBox="0 0 60 60"><line x1="15" y1="40" x2="30" y2="20"/><line x1="30" y1="20" x2="47" y2="38"/><circle cx="15" cy="40" r="7"/><circle cx="30" cy="20" r="9"/><circle cx="47" cy="38" r="6"/></svg>
+    <svg class="bg-mol m2" viewBox="0 0 60 60"><line x1="15" y1="40" x2="30" y2="20"/><line x1="30" y1="20" x2="47" y2="38"/><circle cx="15" cy="40" r="7"/><circle cx="30" cy="20" r="9"/><circle cx="47" cy="38" r="6"/></svg>
+  </div>
+
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="#home" data-nav="home" aria-label="الصفحة الرئيسية: رحلة في عالم حالات المادة">
+        <span class="brand-ico" aria-hidden="true">🧪</span>
+        <span class="brand-text">رحلة في عالم <strong>حالات المادة</strong></span>
+      </a>
+      <nav class="quick-nav" aria-label="المراحل">
+        <a href="#solid" data-nav="solid" title="الحالة الصلبة"><span aria-hidden="true">🧊</span><span class="qn-text">صلبة</span></a>
+        <a href="#liquid" data-nav="liquid" title="الحالة السائلة"><span aria-hidden="true">💧</span><span class="qn-text">سائلة</span></a>
+        <a href="#gas" data-nav="gas" title="الحالة الغازية"><span aria-hidden="true">💨</span><span class="qn-text">غازية</span></a>
+        <a href="#changes" data-nav="changes" title="تحولات المادة"><span aria-hidden="true">🔥</span><span class="qn-text">التحولات</span></a>
+        <a href="#activity" data-nav="activity" title="النشاط التفاعلي"><span aria-hidden="true">🎮</span><span class="qn-text">النشاط</span></a>
+        <a href="#challenge" data-nav="challenge" title="التحدي النهائي"><span aria-hidden="true">🏆</span><span class="qn-text">التحدي</span></a>
+      </nav>
+      <div class="scores" aria-label="رصيدك">
+        <span class="score-chip stars" title="النجوم"><span aria-hidden="true">⭐</span><span class="sr-only">النجوم:</span><b id="stars-count">0</b></span>
+        <span class="score-chip points" title="النقاط"><span aria-hidden="true">🏆</span><span class="sr-only">النقاط:</span><b id="points-count">0</b></span>
+      </div>
+    </div>
+    <div class="journey-progress" id="journey-progress" role="progressbar" aria-label="تقدمك في الرحلة" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span></span></div>
+  </header>
+
+  <main id="app" tabindex="-1">
+    <noscript><p class="noscript">يحتاج هذا الموقع إلى تفعيل JavaScript في المتصفح.</p></noscript>
+  </main>
+
+  <footer class="footer">
+    <p>🧪 رحلة في عالم حالات المادة · منصة تعليمية تفاعلية لطلبة المرحلة الأساسية الدنيا</p>
+  </footer>
+
+  <div id="sr-live" class="sr-only" aria-live="polite"></div>
+</body>
+</html>
