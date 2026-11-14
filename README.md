@@ -137,15 +137,11 @@ matter-journey/
 
 ## 🌐 النشر على GitHub Pages
 
-1. ارفع المشروع إلى مستودع على GitHub:
-   ```bash
-   git remote add origin https://github.com/USERNAME/matter-journey.git
-   git push -u origin main
-   ```
+1. المشروع مرفوع على: https://github.com/maha90-ops/States-of-Matter
 2. في المستودع: **Settings ← Pages**.
 3. في **Source** اختر **Deploy from a branch**، ثم الفرع `main` والمجلد `/ (root)`، واضغط **Save**.
 4. بعد دقيقة تقريبًا يصبح الموقع متاحًا على:
-   `https://USERNAME.github.io/matter-journey/`
+   `https://maha90-ops.github.io/States-of-Matter/`
 
 جميع المسارات في المشروع نسبية، والتنقل يعتمد على الروابط (`#solid`)، لذلك يعمل الموقع على GitHub Pages دون أي إعداد إضافي. ملف `.nojekyll` موجود لضمان نشر الملفات كما هي.
 
