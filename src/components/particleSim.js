@@ -222,6 +222,7 @@ export class ParticleSim {
 
   _loop(now) {
     if (!this.visible && !this.tween) {
+      this._draw(); // صورة ثابتة حتى لا يبدو النموذج فارغًا قبل ظهوره
       this.running = false;
       return;
     }

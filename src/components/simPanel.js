@@ -16,9 +16,9 @@ export function createSimPanel({ state, caption, note, containerControls = true,
         <button type="button" class="btn btn-small btn-ghost sim-pause" aria-pressed="false">⏸️ أوقف الحركة</button>
         ${containerControls ? `
           <div class="seg" role="group" aria-label="حجم الوعاء">
-            <button type="button" class="seg-btn" data-w="0.5" aria-pressed="false">🫙 وعاء ضيق</button>
-            <button type="button" class="seg-btn" data-w="0.66" aria-pressed="true">🥛 وعاء متوسط</button>
-            <button type="button" class="seg-btn" data-w="0.92" aria-pressed="false">🛁 وعاء واسع</button>
+            <button type="button" class="seg-btn" data-w="0.5" aria-pressed="false"><span aria-hidden="true">🫙</span> <span class="seg-word">وعاء</span> ضيق</button>
+            <button type="button" class="seg-btn" data-w="0.66" aria-pressed="true"><span aria-hidden="true">🥛</span> <span class="seg-word">وعاء</span> متوسط</button>
+            <button type="button" class="seg-btn" data-w="0.92" aria-pressed="false"><span aria-hidden="true">🛁</span> <span class="seg-word">وعاء</span> واسع</button>
           </div>` : ''}
       </div>
       ${note ? `<p class="sim-note">👀 ${esc(note)}</p>` : ''}

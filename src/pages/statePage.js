@@ -46,10 +46,14 @@ export function statePage(id) {
               </article>
               <article class="info-card glass">
                 <h2><span aria-hidden="true">📋</span> أمثلة</h2>
+                <p class="examples-tip">اضغط على أي مثال لتعرف عنه أكثر 👆</p>
                 <ul class="examples">
-                  ${st.examples.map((e) => `
-                    <li class="example"><span class="example-emoji" aria-hidden="true">${e.emoji}</span><span>${esc(e.name)}</span></li>`).join('')}
+                  ${st.examples.map((e, i) => `
+                    <li><button type="button" class="example" data-i="${i}" aria-pressed="false">
+                      <span class="example-emoji" aria-hidden="true">${e.emoji}</span><span>${esc(e.name)}</span>
+                    </button></li>`).join('')}
                 </ul>
+                <p class="example-fact" aria-live="polite" hidden></p>
               </article>
               ${mascot(st.containerNote)}
             </div>
@@ -81,17 +85,39 @@ export function statePage(id) {
         el.querySelector('.exp-slot').appendChild(createContainerExperiment());
       }
 
-      el.querySelector('.check-slot').appendChild(
-        renderQuestion(st.check, {
-          mode: 'practice',
-          keyPrefix: 'lesson',
-          onDone: () => {
-            store.completeStage(id);
-            el.querySelector('.stage-done').hidden = false;
-            el.querySelector('.next-stage')?.classList.add('pulse');
-          },
-        })
-      );
+      // أمثلة تفاعلية: جملة قصيرة عن كل مثال
+      const fact = el.querySelector('.example-fact');
+      el.querySelector('.examples').addEventListener('click', (e) => {
+        const b = e.target.closest('.example');
+        if (!b) return;
+        const ex = st.examples[Number(b.dataset.i)];
+        el.querySelectorAll('.example').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+        fact.hidden = false;
+        fact.innerHTML = `<span class="example-fact-emoji" aria-hidden="true">${ex.emoji}</span> ${esc(ex.fact)}`;
+        fact.classList.remove('pop-in');
+        void fact.offsetWidth;
+        fact.classList.add('pop-in');
+      });
+
+      // أسئلة "تحقق من فهمك": تكتمل المرحلة عند الإجابة عن جميعها
+      let solved = 0;
+      st.checks.forEach((q, i) => {
+        el.querySelector('.check-slot').appendChild(
+          renderQuestion(q, {
+            mode: 'practice',
+            keyPrefix: 'lesson',
+            index: st.checks.length > 1 ? i + 1 : undefined,
+            total: st.checks.length,
+            onDone: () => {
+              solved++;
+              if (solved < st.checks.length) return;
+              store.completeStage(id);
+              el.querySelector('.stage-done').hidden = false;
+              el.querySelector('.next-stage')?.classList.add('pulse');
+            },
+          })
+        );
+      });
 
       return el;
     },
