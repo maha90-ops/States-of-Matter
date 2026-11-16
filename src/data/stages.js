@@ -3,7 +3,7 @@
  * route: اسم الصفحة في الرابط (#solid ...)
  */
 export const STAGES = [
-  { id: 'solid', route: 'solid', emoji: '🧊', title: 'الحالة الصلبة', desc: 'شكل ثابت وجسيمات متلاصقة تهتز في مكانها.', color: 'ice' },
+  { id: 'solid', route: 'solid', emoji: '🧊', title: 'الحالة الصلبة', desc: 'شكل ثابت وجسيمات متقاربة جدًا تهتز في مكانها.', color: 'ice' },
   { id: 'liquid', route: 'liquid', emoji: '💧', title: 'الحالة السائلة', desc: 'حجم ثابت، لكنها تأخذ شكل الوعاء.', color: 'aqua' },
   { id: 'gas', route: 'gas', emoji: '💨', title: 'الحالة الغازية', desc: 'تنتشر لتملأ المكان كله.', color: 'mist' },
   { id: 'changes', route: 'changes', emoji: '🔥', title: 'تحولات المادة', desc: 'انصهار وتجمد وتبخر وتكاثف.', color: 'warm' },

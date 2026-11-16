@@ -1,0 +1,19 @@
+{
+  "name": "رحلة في عالم حالات المادة",
+  "short_name": "حالات المادة",
+  "description": "منصة تعليمية تفاعلية لطلبة المرحلة الأساسية الدنيا لتعلم حالات المادة وتحولاتها.",
+  "lang": "ar",
+  "dir": "rtl",
+  "start_url": "./#home",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#f2fbff",
+  "theme_color": "#0288d1",
+  "categories": ["education", "kids"],
+  "icons": [
+    { "src": "assets/icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "assets/icons/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "assets/icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

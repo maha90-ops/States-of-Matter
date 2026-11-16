@@ -681,6 +681,18 @@ main { max-width: var(--container); margin: 0 auto; padding: 24px 16px 40px; out
 
 /* ---------- التذييل ---------- */
 .footer { text-align: center; padding: 24px 16px 32px; color: var(--ink-soft); font-size: .95rem; }
+.footer p { margin: 4px 0; }
+.footer-brand { display: inline-flex; align-items: center; gap: 8px; font-weight: 800; color: var(--ink); font-size: 1.05rem; }
+.footer-brand img { border-radius: 8px; }
+.footer-links a { color: var(--sky-700); font-weight: 700; }
+
+/* ---------- عن المنصة ---------- */
+.about-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.about-card { padding: 22px; display: flex; flex-direction: column; gap: 12px; }
+.about-card h3 { margin: 0; font-size: 1.2rem; display: flex; align-items: center; gap: 8px; }
+.about-card p { margin: 0; color: var(--ink-soft); }
+.about-card .btn-reset { margin-top: auto; align-self: flex-start; min-height: 44px; font-size: 1rem; }
+@media (max-width: 960px) { .about-grid { grid-template-columns: 1fr; } }
 
 /* ---------- الاستجابة للشاشات ---------- */
 @media (max-width: 1100px) {
@@ -799,3 +811,6 @@ h1[tabindex="-1"]:focus, h2[tabindex="-1"]:focus { box-shadow: none; }
   .seg-word { display: none; }
 }
 @media print { .bottom-nav { display: none !important; } }
+
+/* عند الانتقال إلى قسم داخل الصفحة لا يختفي عنوانه خلف الشريط العلوي */
+[id^="home-"] { scroll-margin-top: 96px; }

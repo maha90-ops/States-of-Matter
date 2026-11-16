@@ -93,7 +93,55 @@ export const homePage = {
             }).join('')}
           </div>
         </section>
+
+        <section class="about" id="home-about" aria-labelledby="about-title">
+          <div class="section-head">
+            <span class="eyebrow">👩‍🏫 للمعلمين وأولياء الأمور</span>
+            <h2 id="about-title">عن المنصة</h2>
+            <p>منصة تعليمية عربية تفاعلية تساعد طلبة الصفوف الأولى على فهم حالات المادة بالملاحظة والتجربة، لا بالحفظ.</p>
+          </div>
+          <div class="about-grid">
+            <article class="about-card glass">
+              <h3><span aria-hidden="true">🎯</span> نتاجات التعلّم</h3>
+              <p>يتوقع في نهاية الرحلة أن يكون الطالب قادرًا على أن:</p>
+              <ul class="check-list">
+                <li>يميّز حالات المادة الثلاث من حيث الشكل والحجم.</li>
+                <li>يصف ترتيب الجسيمات وحركتها في كل حالة.</li>
+                <li>يصنّف مواد من حياته اليومية إلى صلبة وسائلة وغازية.</li>
+                <li>يسمّي التحولات الأربعة ويربطها بالتسخين أو التبريد.</li>
+              </ul>
+            </article>
+            <article class="about-card glass">
+              <h3><span aria-hidden="true">🗓️</span> دليل الاستخدام في الصف</h3>
+              <ul class="check-list">
+                <li><strong>المرحلة:</strong> الأساسية الدنيا.</li>
+                <li><strong>المدة المقترحة:</strong> حصتان؛ الأولى للحالات الثلاث، والثانية للتحولات والنشاط والتحدي.</li>
+                <li><strong>طريقة العرض:</strong> على شاشة الصف مع النقاش، أو فرديًا على الأجهزة اللوحية.</li>
+                <li><strong>التقييم:</strong> يحصل الطالب على شهادة عند الإجابة عن 70% من أسئلة التحدي أو أكثر.</li>
+              </ul>
+            </article>
+            <article class="about-card glass">
+              <h3><span aria-hidden="true">💡</span> معلومات مفيدة</h3>
+              <ul class="check-list">
+                <li>يحفظ الموقع تقدّم الطالب على الجهاز نفسه دون أي تسجيل أو جمع بيانات.</li>
+                <li>بعد الزيارة الأولى يعمل الموقع بدون إنترنت، ويمكن تثبيته على الشاشة الرئيسية كتطبيق.</li>
+                <li>يدعم لوحة المفاتيح وقارئات الشاشة، ويحترم إعداد "تقليل الحركة".</li>
+              </ul>
+              <button type="button" class="btn btn-secondary btn-reset">🔄 ابدأ من جديد لطالب آخر</button>
+            </article>
+          </div>
+        </section>
       </div>`);
+
+    el.querySelector('.btn-reset').addEventListener('click', () => {
+      if (confirm('سيتم مسح النقاط والنجوم والمراحل المكتملة على هذا الجهاز. هل تريد المتابعة؟')) {
+        store.reset();
+        store.setName('');
+        location.hash = 'home';
+        window.scrollTo({ top: 0 });
+        location.reload();
+      }
+    });
 
     el.querySelector('.hero-audio').appendChild(createAudioButton('intro', 'استمع إلى المقدمة'));
     return el;

@@ -111,7 +111,13 @@ export function renderQuestion(q, { mode = 'practice', keyPrefix = 'q', onDone =
   }
 
   if (q.options) {
-    const opts = q.type === 'truefalse' ? q.options : q.options;
+    // خلط ترتيب الخيارات في كل مرة حتى لا يحفظ الطالب مكان الإجابة.
+    // الخيارات المصوّرة المسمّاة (الوعاء أ/ب/ج) يُعاد ترقيمها بعد الخلط.
+    const LETTERS = ['أ', 'ب', 'ج', 'د'];
+    const opts = q.type === 'truefalse'
+      ? q.options
+      : shuffle(q.options).map((o, i) =>
+          /^الوعاء [أ-ي]$/.test(o.text) ? { ...o, text: `الوعاء ${LETTERS[i]}` } : o);
     body.innerHTML = `<div class="options ${hasImageOptions ? 'options-img' : ''} ${q.type === 'truefalse' ? 'options-tf' : ''}" role="group" aria-label="الخيارات">
       ${opts.map((o, i) => `
         <button type="button" class="option" data-i="${i}">
