@@ -2,7 +2,7 @@
  * عامل الخدمة: يحفظ ملفات الموقع في الجهاز ليعمل بدون إنترنت داخل الصف.
  * عند تعديل أي ملف في الموقع، غيّر رقم VERSION حتى يحصل الطلاب على النسخة الجديدة.
  */
-const VERSION = 'v3';
+const VERSION = 'v4';
 const CACHE = `matter-journey-${VERSION}`;
 const FONT_CACHE = 'matter-journey-fonts';
 
@@ -10,12 +10,21 @@ const ASSETS = [
   "./",
   "assets/audio/before-activity.mp3",
   "assets/audio/changes.mp3",
+  "assets/audio/condensation.mp3",
   "assets/audio/correct.mp3",
+  "assets/audio/discovery.mp3",
   "assets/audio/ending.mp3",
+  "assets/audio/evaporation.mp3",
+  "assets/audio/freezing.mp3",
+  "assets/audio/games.mp3",
   "assets/audio/gas.mp3",
   "assets/audio/hint.mp3",
   "assets/audio/intro.mp3",
+  "assets/audio/lab.mp3",
   "assets/audio/liquid.mp3",
+  "assets/audio/matter.mp3",
+  "assets/audio/melting.mp3",
+  "assets/audio/scenarios.mp3",
   "assets/audio/solid.mp3",
   "assets/audio/try-again.mp3",
   "assets/icons/apple-touch-icon.png",

@@ -176,6 +176,15 @@ body.has-modal { overflow: hidden; }
 .discovery, .scenarios { padding: 26px; display: flex; flex-direction: column; gap: 18px; }
 .disc-head h2 { margin-bottom: .2em; }
 .disc-head p { margin: 0; color: var(--ink-soft); }
+.disc-audio { margin-top: 12px; }
+.term-audio { display: flex; justify-content: center; margin: 4px 0 12px; }
+.summary-card { display: flex; flex-direction: column; }
+.summary-audio { margin-top: auto; padding-top: 8px; }
+.summary-audio .audio-ctrl { display: flex; width: 100%; border-radius: 22px; padding: 6px; }
+.summary-audio .audio-btn { flex: 1; justify-content: center; min-height: 44px; padding: 6px 12px; font-size: .98rem; }
+.summary-audio .audio-restart { width: 40px; height: 40px; font-size: 1.1rem; }
+.summary-audio .audio-meta { flex-basis: 100%; padding: 0 6px; }
+.summary-audio .audio-bar { flex: 1; width: auto; }
 .disc-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 20px; align-items: start; }
 .disc-beaker { --heat: 0; display: grid; grid-template-columns: 34px 1fr; gap: 10px; align-items: end; }
 .disc-thermo { display: flex; flex-direction: column; align-items: center; }

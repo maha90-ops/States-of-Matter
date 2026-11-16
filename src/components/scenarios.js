@@ -7,6 +7,7 @@ import { store } from '../core/store.js';
 import { SCENARIOS } from '../data/extras.js';
 import { playSfx } from './audioPlayer.js';
 import { starBurst } from './effects.js';
+import { createAudioButton } from './audioPlayer.js';
 
 const ICE = `<svg viewBox="0 0 120 120" aria-hidden="true"><polygon points="60,12 106,36 60,60 14,36" fill="#e9fbff" stroke="#fff" stroke-width="2"/><polygon points="14,36 60,60 60,108 14,84" fill="#8fdcfb" stroke="#fff" stroke-width="2"/><polygon points="106,36 60,60 60,108 106,84" fill="#3fb7ee" stroke="#fff" stroke-width="2"/><path d="M24 48v20" stroke="#fff" stroke-width="5" stroke-linecap="round"/></svg>`;
 const SUN = `<svg viewBox="0 0 120 120" aria-hidden="true"><g class="sc-rays" stroke="#f5b301" stroke-width="7" stroke-linecap="round">${Array.from({ length: 8 }, (_, i) => `<line x1="60" y1="8" x2="60" y2="22" transform="rotate(${i * 45} 60 60)"/>`).join('')}</g><circle cx="60" cy="60" r="30" fill="#ffd23f" stroke="#f5b301" stroke-width="4"/></svg>`;
@@ -31,9 +32,11 @@ export function createScenarios({ onDone }) {
         <span class="eyebrow">🤔 توقّع ← شاهد ← فسّر</span>
         <h2 id="scn-title">ماذا سيحدث؟</h2>
         <p>العالِم الذكي يتوقع أولًا، ثم يجرّب ليتحقق من توقعه!</p>
+        <div class="disc-audio"></div>
       </div>
       <div class="scn-body"></div>
     </section>`);
+  el.querySelector('.disc-audio').appendChild(createAudioButton('scenarios', 'استمع إلى التعليمات'));
   const box = el.querySelector('.scn-body');
   let i = 0;
   let right = 0;

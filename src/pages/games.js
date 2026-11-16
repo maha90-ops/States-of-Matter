@@ -5,7 +5,7 @@ import { GAMES, RESCUE_ROUNDS } from '../data/extras.js';
 import { ThermoSim } from '../components/thermoSim.js';
 import { renderQuestion } from '../components/question.js';
 import { starBurst, confetti } from '../components/effects.js';
-import { playSfx } from '../components/audioPlayer.js';
+import { playSfx, createAudioButton } from '../components/audioPlayer.js';
 import { stageNav, stageLabel, mascot } from '../components/layout.js';
 
 const NAMES = { solid: '🧊 الحالة الصلبة', liquid: '💧 الحالة السائلة', gas: '💨 الحالة الغازية' };
@@ -168,12 +168,14 @@ export const gamesPage = {
           <span class="eyebrow">${stageLabel('games')} · <span aria-hidden="true">🎯</span></span>
           <h1>🎯 ألعاب المختبر</h1>
           <p class="lead">ثلاث ألعاب سريعة تختبر فيها عينك العلمية! كل لعبة تمنحك ⭐ نجمة و٢٠ نقطة.</p>
+          <div class="lesson-audio"></div>
         </header>
         <div class="games-stage"></div>
         ${mascot('العب كل الألعاب الثلاث لتحصل على شارة «بطل الألعاب» 🎯')}
         <div class="stage-done" ${store.isComplete('games') ? '' : 'hidden'}><p>✅ أنهيت ألعاب المختبر! أنت جاهز للنشاط التفاعلي.</p></div>
         ${stageNav('games')}
       </div>`);
+    el.querySelector('.lesson-audio').appendChild(createAudioButton('games', 'استمع إلى التعليمات'));
     const stage = el.querySelector('.games-stage');
     let stop = null;
     const cleanup = () => { if (stop) { stop(); stop = null; } };

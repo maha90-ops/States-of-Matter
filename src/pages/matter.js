@@ -6,6 +6,7 @@ import { renderQuestion } from '../components/question.js';
 import { starBurst } from '../components/effects.js';
 import { playSfx } from '../components/audioPlayer.js';
 import { mascot, stageNav, stageLabel } from '../components/layout.js';
+import { createAudioButton } from '../components/audioPlayer.js';
 
 export const matterPage = {
   title: 'ما المادة؟',
@@ -17,6 +18,7 @@ export const matterPage = {
           <span class="eyebrow">${stageLabel('matter')} · <span aria-hidden="true">🌍</span></span>
           <h1>🌍 ما المادة؟</h1>
           <p class="lead">كل شيء حولنا تقريبًا مادة! لكن كيف نعرف إن كان الشيء مادة أم لا؟ هيا نكتشف معًا.</p>
+          <div class="lesson-audio"></div>
         </header>
 
         <section class="def-card glass" aria-label="تعريف المادة">
@@ -70,6 +72,8 @@ export const matterPage = {
 
         ${stageNav('matter')}
       </div>`);
+
+    el.querySelector('.lesson-audio').appendChild(createAudioButton('matter', 'استمع إلى الشرح'));
 
     const goals = { cards: new Set(), found: new Set(), check: false };
     const tryComplete = () => {

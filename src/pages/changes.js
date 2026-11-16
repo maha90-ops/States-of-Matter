@@ -99,6 +99,7 @@ export const changesPage = {
               <h3><span aria-hidden="true">${t.heat ? '🔥' : '❄️'}</span> ${t.name}</h3>
               <p class="summary-path"><span aria-hidden="true">${STATE_LABELS[t.from].emoji}</span> ${STATE_LABELS[t.from].name} ← <span aria-hidden="true">${STATE_LABELS[t.to].emoji}</span> ${STATE_LABELS[t.to].name}</p>
               <p>${esc(t.summary)}</p>
+              <div class="summary-audio" data-t="${t.id}"></div>
             </article>`).join('')}
         </section>
 
@@ -200,6 +201,11 @@ export const changesPage = {
         },
       })
     );
+
+    // صوت كل مصطلح في بطاقات الملخص
+    el.querySelectorAll('.summary-audio').forEach((slot) => {
+      slot.appendChild(createAudioButton(slot.dataset.t, 'استمع'));
+    });
 
     // مختبر الحرارة الموجّه + مواقف «ماذا سيحدث؟»
     const discovery = createDiscoveryLab({});

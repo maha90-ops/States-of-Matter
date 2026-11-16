@@ -5,6 +5,7 @@ import { LAB_FACTS, LAB_CHECK } from '../data/extras.js';
 import { ThermoSim, describeSim } from '../components/thermoSim.js';
 import { renderQuestion } from '../components/question.js';
 import { mascot, stageNav, stageLabel } from '../components/layout.js';
+import { createAudioButton } from '../components/audioPlayer.js';
 
 const NAMES = { solid: { e: '🧊', n: 'صلب', l: 'الحالة الصلبة' }, liquid: { e: '💧', n: 'سائل', l: 'الحالة السائلة' }, gas: { e: '💨', n: 'غاز', l: 'الحالة الغازية' } };
 const heatWord = (v) => (v < 25 ? 'باردة جدًا' : v < 50 ? 'باردة' : v < 75 ? 'دافئة' : 'ساخنة');
@@ -19,6 +20,7 @@ export const labPage = {
           <span class="eyebrow">${stageLabel('lab')} · <span aria-hidden="true">🔬</span></span>
           <h1>🔬 مختبر الجزيئات</h1>
           <p class="lead">هنا تتحكم أنت! اختر حالة المادة، وشغّل المحاكاة، وغيّر درجة الحرارة، وقارن بين حركة الجسيمات.</p>
+          <div class="lesson-audio"></div>
         </header>
 
         <section class="lab-box glass" aria-label="المختبر">
@@ -81,6 +83,7 @@ export const labPage = {
         ${stageNav('lab')}
       </div>`);
 
+    el.querySelector('.lesson-audio').appendChild(createAudioButton('lab', 'استمع إلى الشرح'));
     const canvas = el.querySelector('canvas');
     const range = el.querySelector('#lab-temp');
     const overlay = el.querySelector('.sim-play-overlay');

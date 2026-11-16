@@ -10,6 +10,7 @@ import { TRANSITIONS, STATE_LABELS } from '../data/transitions.js';
 import { ThermoSim, describeSim } from './thermoSim.js';
 import { renderQuestion } from './question.js';
 import { starBurst } from './effects.js';
+import { createAudioButton } from './audioPlayer.js';
 
 const T = Object.fromEntries(TRANSITIONS.map((t) => [t.id, t]));
 const heatWord = (v) => (v < 20 ? 'باردة جدًا ❄️' : v < 40 ? 'باردة' : v < 64 ? 'دافئة' : v < 80 ? 'ساخنة' : 'ساخنة جدًا 🔥');
@@ -24,6 +25,7 @@ export function createDiscoveryLab({ onDone }) {
         <span class="eyebrow">🧪 جرّب بنفسك</span>
         <h2 id="disc-title">مختبر الحرارة: لاحظ أولًا، ثم سمِّ ما حدث</h2>
         <p>سخّن وبرّد بنفسك، وراقب الجسيمات جيدًا. لن نخبرك باسم التحول حتى تكتشفه أنت!</p>
+        <div class="disc-audio"></div>
       </div>
       <div class="disc-grid">
         <div class="disc-lab">
@@ -53,6 +55,7 @@ export function createDiscoveryLab({ onDone }) {
       <div class="disc-path" aria-label="التحولات التي اكتشفتها"></div>
     </section>`);
 
+  el.querySelector('.disc-audio').appendChild(createAudioButton('discovery', 'استمع إلى التعليمات'));
   const canvas = el.querySelector('canvas');
   const range = el.querySelector('#disc-temp');
   const beaker = el.querySelector('.disc-beaker');
@@ -136,12 +139,16 @@ export function createDiscoveryLab({ onDone }) {
         <p class="term-name"><span aria-hidden="true">${t.heat ? '🔥' : '❄️'}</span> ${esc(t.name)}</p>
         <p class="term-def">${esc(t.summary)}</p>
         <p class="term-flow" aria-hidden="true">${STATE_LABELS[t.from].emoji} ${STATE_LABELS[t.from].name} ← ${STATE_LABELS[t.to].emoji} ${STATE_LABELS[t.to].name}</p>
+        <div class="term-audio"></div>
         <button type="button" class="btn btn-primary" data-next>${idx < DISCOVERY_TASKS.length - 1 ? 'التجربة التالية ⬅️' : 'أنهيت التجارب 🎉'}</button>
       </div>`;
+    const termAudio = createAudioButton(t.id, `استمع: ${t.name}`);
+    termSlot.querySelector('.term-audio').appendChild(termAudio);
     starBurst(termSlot.querySelector('.term-name'));
     announce(`اكتشفت ${t.name}: ${t.summary}`);
     const next = termSlot.querySelector('[data-next]');
     next.addEventListener('click', () => {
+      termAudio.destroy();
       termSlot.replaceChildren();
       idx++;
       waiting = false;

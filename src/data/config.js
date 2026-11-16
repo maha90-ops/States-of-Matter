@@ -21,6 +21,15 @@ export const AUDIO_BASE = 'assets/audio/';
 /* الشرح الصوتي المسجّل لكل قسم */
 export const NARRATION = {
   intro: 'intro.mp3',
+  matter: 'matter.mp3',
+  lab: 'lab.mp3',
+  games: 'games.mp3',
+  discovery: 'discovery.mp3',
+  scenarios: 'scenarios.mp3',
+  melting: 'melting.mp3',
+  evaporation: 'evaporation.mp3',
+  condensation: 'condensation.mp3',
+  freezing: 'freezing.mp3',
   solid: 'solid.mp3',
   liquid: 'liquid.mp3',
   gas: 'gas.mp3',
