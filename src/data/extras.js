@@ -179,5 +179,6 @@ export const BADGES = [
   { id: 'hunter', icon: '🔬', title: 'صائد الجسيمات', desc: 'جرّبتَ مختبر الجزيئات بنفسك.', test: (s) => s.completed.includes('lab') },
   { id: 'changer', icon: '🔥', title: 'مكتشف التحولات', desc: 'اكتشفتَ التحولات الأربعة.', test: (s) => s.completed.includes('changes') },
   { id: 'gamer', icon: '🎯', title: 'بطل الألعاب', desc: 'أنهيتَ ألعاب المختبر كلها.', test: (s) => s.completed.includes('games') },
+  { id: 'smart', icon: '👑', title: 'المتعلّم الذكي', desc: 'وصلتَ إلى مستوى «عالِم متقدم» في التدريب الذكي.', test: (s) => s.adaptive?.peak === 'hard' },
   { id: 'scientist', icon: '🎓', title: 'عالم المادة الصغير', desc: 'حصلتَ على الشهادة في التحدي النهائي.', test: (s, ctx) => ctx.passed },
 ];

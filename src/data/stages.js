@@ -12,5 +12,6 @@ export const STAGES = [
   { id: 'changes', route: 'changes', short: 'التحولات', emoji: '🔥', title: 'تحولات المادة', desc: 'انصهار وتجمد وتبخر وتكاثف.', color: 'warm' },
   { id: 'games', route: 'games', short: 'الألعاب', emoji: '🎯', title: 'ألعاب المختبر', desc: 'اصطد الجسيمات وأنقذ المختبر!', color: 'aqua' },
   { id: 'activity', route: 'activity', short: 'النشاط', emoji: '🎮', title: 'النشاط التفاعلي', desc: 'أسئلة وألعاب ممتعة لتثبيت ما تعلمته.', color: 'green' },
+  { id: 'adaptive', route: 'adaptive', short: 'التدريب', emoji: '🧠', title: 'التدريب الذكي', desc: 'أسئلة تتكيّف مع مستواك: تصعب كلما أتقنت.', color: 'mist' },
   { id: 'challenge', route: 'challenge', short: 'التحدي', emoji: '🏆', title: 'التحدي النهائي', desc: '٨ أسئلة وشهادة إنجاز للأبطال.', color: 'gold' },
 ];

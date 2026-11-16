@@ -34,6 +34,7 @@ export const resultsPage = {
       ['🔬', 'مختبر الجزيئات', status(s.completed.includes('lab')), s.completed.includes('lab') ? 100 : 0],
       ['🔥', 'التحولات', status(s.completed.includes('changes')), s.completed.includes('changes') ? 100 : 0],
       ['🎯', 'ألعاب المختبر', `<span class="st star">⭐ ${num(gamesDone)}/${num(GAMES.length)}</span>`, (gamesDone / GAMES.length) * 100],
+      ['🧠', 'التدريب الذكي', s.adaptive?.peak ? `<span class="st star">${{ easy: '🌱 مبتدئ', medium: '🔬 مستكشف', hard: '👑 عالِم متقدم' }[s.adaptive.peak]}</span>` : status(false, 'لم تبدأ بعد'), s.adaptive?.peak ? { easy: 34, medium: 67, hard: 100 }[s.adaptive.peak] : 0],
       ['🎮', 'النشاط التفاعلي', status(s.completed.includes('activity')), s.completed.includes('activity') ? 100 : 0],
       ['🏆', 'التحدي النهائي', s.bestScore === null ? status(false, 'لم تبدأ بعد') : `<span class="st star">🎯 ${num(s.bestScore)}/${num(MAX)}</span>`, quizPct],
     ];

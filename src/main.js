@@ -12,6 +12,7 @@ import { labPage } from './pages/lab.js';
 import { gamesPage } from './pages/games.js';
 import { resultsPage } from './pages/results.js';
 import { teacherPage } from './pages/teacher.js';
+import { adaptivePage } from './pages/adaptive.js';
 import { applySettings } from './core/settings.js';
 import { mountBadges } from './components/badges.js';
 import { openA11yPanel } from './components/a11yPanel.js';
@@ -28,6 +29,7 @@ router.register('lab', labPage);
 router.register('changes', changesPage);
 router.register('games', gamesPage);
 router.register('activity', activityPage);
+router.register('adaptive', adaptivePage);
 router.register('challenge', challengePage);
 router.register('ending', endingPage);
 router.register('certificate', certificatePage);
@@ -49,6 +51,13 @@ router.onChange((page) => {
   document.querySelectorAll('[data-nav]').forEach((a) => {
     a.toggleAttribute('aria-current', a.dataset.nav === page);
   });
+  // الشريط السفلي يتحرك أفقيًا ليظهر رابط المحطة الحالية دائمًا
+  const bar = document.querySelector('.bottom-nav');
+  const cur = bar?.querySelector('[aria-current]');
+  if (bar && cur && bar.scrollWidth > bar.clientWidth) {
+    const b = bar.getBoundingClientRect(); const c = cur.getBoundingClientRect();
+    bar.scrollBy({ left: c.left + c.width / 2 - (b.left + b.width / 2), behavior: 'auto' });
+  }
 });
 
 router.start(document.getElementById('app'));

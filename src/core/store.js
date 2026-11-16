@@ -16,6 +16,7 @@ const fresh = () => ({
   bestScore: null, // أفضل نتيجة في التحدي النهائي
   badges: [],      // الشارات التي حصل عليها الطالب
   games: [],       // ألعاب المختبر المكتملة
+  adaptive: { peak: null, sessions: 0 }, // التدريب الذكي: أعلى مستوى وعدد الجلسات
 });
 
 let state = load();
@@ -93,6 +94,15 @@ export const store = {
   completeGame(id) {
     if (!state.games.includes(id)) state.games.push(id);
     store.awardOnce(`game:${id}`, POINTS.activityComplete, 1, 'إكمال لعبة');
+  },
+
+  recordAdaptive(peak) {
+    const order = ['easy', 'medium', 'hard'];
+    const a = state.adaptive || { peak: null, sessions: 0 };
+    a.sessions += 1;
+    if (!a.peak || order.indexOf(peak) > order.indexOf(a.peak)) a.peak = peak;
+    state.adaptive = a;
+    emit({ type: 'adaptive', peak });
   },
 
   setBestScore(score) {
