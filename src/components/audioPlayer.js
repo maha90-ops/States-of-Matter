@@ -6,6 +6,7 @@
  */
 import { AUDIO_BASE, NARRATION, FEEDBACK_SOUNDS } from '../data/config.js';
 import { esc, html } from '../core/dom.js';
+import { settingsStore } from '../core/settings.js';
 
 const availability = new Map(); // url -> Promise<boolean>
 
@@ -23,6 +24,9 @@ function exists(url) {
 }
 
 const players = new Set();
+
+// إيقاف كل الأصوات فورًا عند إطفاء الصوت من إعدادات الوصول
+settingsStore.subscribe((s, key) => { if (key === 'sound' && !s.sound) players.forEach((p) => p.stop()); });
 
 export const audio = {
   stopAll(except) {
@@ -116,6 +120,14 @@ export function createAudioButton(key, label = 'استمع إلى الشرح') {
   players.add(player);
 
   const play = () => {
+    if (!settingsStore.get().sound) {
+      // الصوت متوقف من إعدادات الوصول: نوضّح ذلك بدل الصمت
+      const lbl = el.querySelector('.audio-lbl');
+      const old = lbl.textContent;
+      lbl.textContent = '🔇 الصوت متوقف من ♿ إعدادات الوصول';
+      setTimeout(() => { lbl.textContent = old; }, 2600);
+      return;
+    }
     ensure();
     audio.stopAll(player);
     a.play().then(() => setState('playing')).catch(() => setState(a.error ? 'missing' : 'paused'));
@@ -164,6 +176,7 @@ const sfxCache = new Map();
  * لا يحدث شيء إذا لم يُضف الملف بعد.
  */
 export async function playSfx(name) {
+  if (!settingsStore.get().sound) return; // الصوت متوقف من إعدادات الوصول
   const file = FEEDBACK_SOUNDS[name];
   if (!file) return;
   const url = AUDIO_BASE + file;

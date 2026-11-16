@@ -19,8 +19,10 @@ export function html(markup) {
 export const $ = (sel, root = document) => root.querySelector(sel);
 export const $$ = (sel, root = document) => [...root.querySelectorAll(sel)];
 
+/** تقليل الحركة: من إعداد النظام أو من «إعدادات الوصول» داخل الموقع */
 export const prefersReducedMotion = () =>
-  window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.documentElement.classList.contains('reduce-motion') ||
+  (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
 
 /** خلط عناصر مصفوفة (نسخة جديدة) */
 export function shuffle(arr) {

@@ -14,6 +14,8 @@ const fresh = () => ({
   awarded: [],     // مفاتيح المكافآت التي مُنحت (لمنع التكرار)
   name: '',
   bestScore: null, // أفضل نتيجة في التحدي النهائي
+  badges: [],      // الشارات التي حصل عليها الطالب
+  games: [],       // ألعاب المختبر المكتملة
 });
 
 let state = load();
@@ -81,6 +83,16 @@ export const store = {
   setName(name) {
     state.name = name;
     save();
+  },
+
+  addBadges(ids) {
+    ids.forEach((id) => { if (!state.badges.includes(id)) state.badges.push(id); });
+    emit({ type: 'badges', ids });
+  },
+
+  completeGame(id) {
+    if (!state.games.includes(id)) state.games.push(id);
+    store.awardOnce(`game:${id}`, POINTS.activityComplete, 1, 'إكمال لعبة');
   },
 
   setBestScore(score) {

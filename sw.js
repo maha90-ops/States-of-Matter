@@ -2,7 +2,7 @@
  * عامل الخدمة: يحفظ ملفات الموقع في الجهاز ليعمل بدون إنترنت داخل الصف.
  * عند تعديل أي ملف في الموقع، غيّر رقم VERSION حتى يحصل الطلاب على النسخة الجديدة.
  */
-const VERSION = 'v2';
+const VERSION = 'v3';
 const CACHE = `matter-journey-${VERSION}`;
 const FONT_CACHE = 'matter-journey-fonts';
 
@@ -37,31 +37,47 @@ const ASSETS = [
   "assets/images/success.webp",
   "index.html",
   "manifest.webmanifest",
+  "src/components/a11yPanel.js",
   "src/components/audioPlayer.js",
+  "src/components/badges.js",
   "src/components/certificate.js",
   "src/components/containerExperiment.js",
+  "src/components/discoveryLab.js",
   "src/components/effects.js",
   "src/components/layout.js",
+  "src/components/modal.js",
   "src/components/particleSim.js",
   "src/components/question.js",
+  "src/components/scenarios.js",
   "src/components/scoreboard.js",
   "src/components/simPanel.js",
+  "src/components/thermoSim.js",
   "src/core/dom.js",
+  "src/core/pdf.js",
   "src/core/router.js",
+  "src/core/settings.js",
   "src/core/store.js",
   "src/data/activityQuestions.js",
   "src/data/challengeQuestions.js",
   "src/data/config.js",
+  "src/data/extras.js",
   "src/data/stages.js",
   "src/data/states.js",
+  "src/data/teacher.js",
   "src/data/transitions.js",
   "src/main.js",
   "src/pages/activity.js",
   "src/pages/challenge.js",
   "src/pages/changes.js",
   "src/pages/ending.js",
+  "src/pages/games.js",
   "src/pages/home.js",
+  "src/pages/lab.js",
+  "src/pages/matter.js",
+  "src/pages/results.js",
   "src/pages/statePage.js",
+  "src/pages/teacher.js",
+  "src/styles/extras.css",
   "src/styles/main.css"
 ];
 

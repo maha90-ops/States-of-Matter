@@ -7,6 +7,8 @@ import { createAudioButton } from '../components/audioPlayer.js';
 import { createSimPanel } from '../components/simPanel.js';
 import { renderQuestion } from '../components/question.js';
 import { stageNav, stageLabel } from '../components/layout.js';
+import { createDiscoveryLab } from '../components/discoveryLab.js';
+import { createScenarios } from '../components/scenarios.js';
 
 const ORDER = ['solid', 'liquid', 'gas'];
 const THERMO = { solid: 14, liquid: 50, gas: 88 };
@@ -99,6 +101,9 @@ export const changesPage = {
               <p>${esc(t.summary)}</p>
             </article>`).join('')}
         </section>
+
+        <div class="discovery-slot"></div>
+        <div class="scenarios-slot"></div>
 
         <section class="check-section" aria-labelledby="check-changes-title">
           <h2 id="check-changes-title" class="section-title"><span aria-hidden="true">🧠</span> تحقّق من فهمك</h2>
@@ -196,6 +201,15 @@ export const changesPage = {
       })
     );
 
-    return { el, cleanup: () => clearTimeout(timer) };
+    // مختبر الحرارة الموجّه + مواقف «ماذا سيحدث؟»
+    const discovery = createDiscoveryLab({});
+    const scenarios = createScenarios({});
+    el.querySelector('.discovery-slot').appendChild(discovery);
+    el.querySelector('.scenarios-slot').appendChild(scenarios);
+
+    return {
+      el,
+      cleanup: () => { clearTimeout(timer); discovery.destroy(); scenarios.destroy(); },
+    };
   },
 };

@@ -32,6 +32,7 @@ export const endingPage = {
             ${store.allComplete() ? '' : '<p class="ending-note">💡 بقيت لديك محطات لم تكملها. أكملها لتحصل على مكافأة الرحلة الكاملة (+' + num(POINTS.journeyComplete) + ' نقطة)!</p>'}
             <div class="result-actions">
               <button type="button" class="btn btn-primary btn-lg btn-restart">🔄 أعد الرحلة</button>
+              <a class="btn btn-secondary btn-lg" href="#results">📊 رحلتي التعليمية</a>
               <a class="btn btn-secondary btn-lg" href="#home">🏠 العودة إلى الرئيسية</a>
               ${hasCertificate() ? '<a class="btn btn-gold btn-lg" href="#certificate">📜 شهادتي</a>' : ''}
             </div>

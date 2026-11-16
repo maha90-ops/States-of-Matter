@@ -4,6 +4,7 @@
 import { html, esc, num } from '../core/dom.js';
 import { store } from '../core/store.js';
 import { IMG } from '../data/config.js';
+import { canvasToPdf, downloadBlob } from '../core/pdf.js';
 
 const TITLE = '🏆 شهادة مستكشف حالات المادة';
 const BODY = 'تهانينا! لقد أتممت رحلة التعلم في عالم حالات المادة بنجاح.';
@@ -48,10 +49,11 @@ export function createCertificate({ score, max, stars }) {
       </div>
 
       <div class="cert-actions">
-        <button type="button" class="btn btn-primary btn-save">📥 حفظ الشهادة</button>
+        <button type="button" class="btn btn-primary btn-pdf">📄 تنزيل PDF</button>
+        <button type="button" class="btn btn-secondary btn-save">🖼️ حفظ كصورة</button>
         <button type="button" class="btn btn-secondary btn-print">🖨️ طباعة الشهادة</button>
       </div>
-      <p class="cert-tip">تُحفظ الشهادة كصورة عالية الدقة مناسبة للطباعة. ويمكنك أيضًا اختيار "حفظ بصيغة PDF" من نافذة الطباعة.</p>
+      <p class="cert-tip">ملف PDF أو صورة عالية الدقة (A4 أفقي) مناسبة للطباعة، يُنشآن على جهازك دون إنترنت.</p>
     </section>`);
 
   const input = el.querySelector('.cert-input');
@@ -73,10 +75,10 @@ export function createCertificate({ score, max, stars }) {
     btn.disabled = true;
     btn.textContent = '⏳ جارٍ التجهيز...';
     try {
-      const url = await drawCertificatePNG({ name: input.value.trim(), score, max, stars });
+      const url = (await drawCertificateCanvas({ name: input.value.trim(), score, max, stars })).toDataURL('image/png');
       const a = document.createElement('a');
       a.href = url;
-      a.download = `شهادة-مستكشف-حالات-المادة${input.value.trim() ? '-' + input.value.trim() : ''}.png`;
+      a.download = 'states-of-matter-certificate.png'; // اسم لاتيني: بعض المتصفحات تتجاهل الأسماء العربية
       document.body.appendChild(a);
       a.click();
       a.remove();
@@ -85,7 +87,23 @@ export function createCertificate({ score, max, stars }) {
       window.print();
     } finally {
       btn.disabled = false;
-      btn.textContent = '📥 حفظ الشهادة';
+      btn.textContent = '🖼️ حفظ كصورة';
+    }
+  });
+
+  el.querySelector('.btn-pdf').addEventListener('click', async (e) => {
+    const btn = e.currentTarget;
+    btn.disabled = true;
+    btn.textContent = '⏳ جارٍ التجهيز...';
+    try {
+      const canvas = await drawCertificateCanvas({ name: input.value.trim(), score, max, stars });
+      downloadBlob(canvasToPdf(canvas), 'states-of-matter-certificate.pdf');
+    } catch (err) {
+      console.error(err);
+      window.print();
+    } finally {
+      btn.disabled = false;
+      btn.textContent = '📄 تنزيل PDF';
     }
   });
 
@@ -132,7 +150,7 @@ function drawMolecule(g, x, y, s, color) {
   });
 }
 
-async function drawCertificatePNG({ name, score, max, stars }) {
+async function drawCertificateCanvas({ name, score, max, stars }) {
   await document.fonts?.ready;
   const W = 2480;
   const H = 1754;
@@ -234,5 +252,5 @@ async function drawCertificatePNG({ name, score, max, stars }) {
   g.font = font(700, 68);
   g.fillText('رحلة في عالم حالات المادة', mx, 1387);
 
-  return c.toDataURL('image/png');
+  return c;
 }

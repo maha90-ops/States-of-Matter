@@ -32,6 +32,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2:wght@500;600;700;800&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
   <link rel="preload" as="image" href="assets/images/hero.webp">
   <link rel="stylesheet" href="src/styles/main.css">
+  <link rel="stylesheet" href="src/styles/extras.css">
   <script type="module" src="src/main.js"></script>
 </head>
 <body>
@@ -51,14 +52,12 @@
         <span class="brand-ico" aria-hidden="true">🧪</span>
         <span class="brand-text">رحلة في عالم <strong>حالات المادة</strong></span>
       </a>
-      <nav class="quick-nav" aria-label="المراحل">
-        <a href="#solid" data-nav="solid" title="الحالة الصلبة"><span aria-hidden="true">🧊</span><span class="qn-text">صلبة</span></a>
-        <a href="#liquid" data-nav="liquid" title="الحالة السائلة"><span aria-hidden="true">💧</span><span class="qn-text">سائلة</span></a>
-        <a href="#gas" data-nav="gas" title="الحالة الغازية"><span aria-hidden="true">💨</span><span class="qn-text">غازية</span></a>
-        <a href="#changes" data-nav="changes" title="تحولات المادة"><span aria-hidden="true">🔥</span><span class="qn-text">التحولات</span></a>
-        <a href="#activity" data-nav="activity" title="النشاط التفاعلي"><span aria-hidden="true">🎮</span><span class="qn-text">النشاط</span></a>
-        <a href="#challenge" data-nav="challenge" title="التحدي النهائي"><span aria-hidden="true">🏆</span><span class="qn-text">التحدي</span></a>
-      </nav>
+      <nav class="quick-nav" aria-label="المراحل"></nav>
+      <div class="tools" aria-label="أدوات">
+        <a class="tool-btn" href="#results" data-nav="results" title="رحلتي التعليمية"><span aria-hidden="true">📊</span><span class="sr-only">رحلتي التعليمية</span></a>
+        <a class="tool-btn" href="#teacher" data-nav="teacher" title="وضع المعلم"><span aria-hidden="true">👩‍🏫</span><span class="sr-only">وضع المعلم</span></a>
+        <button type="button" class="tool-btn btn-a11y" aria-haspopup="dialog" title="إعدادات الوصول"><span aria-hidden="true">♿</span><span class="sr-only">إعدادات الوصول</span></button>
+      </div>
       <div class="scores" aria-label="رصيدك">
         <span class="score-chip stars" title="النجوم"><span aria-hidden="true">⭐</span><span class="sr-only">النجوم:</span><b id="stars-count">0</b></span>
         <span class="score-chip points" title="النقاط"><span aria-hidden="true">🏆</span><span class="sr-only">النقاط:</span><b id="points-count">0</b></span>
@@ -74,17 +73,10 @@
   <footer class="footer">
     <p class="footer-brand"><img src="assets/icons/icon.svg" alt="" width="28" height="28"> رحلة في عالم حالات المادة</p>
     <p>منصة تعليمية تفاعلية لطلبة المرحلة الأساسية الدنيا · تعمل على الهاتف واللوحي والكمبيوتر، وبدون إنترنت بعد أول زيارة.</p>
-    <p class="footer-links"><a href="#home-about">عن المنصة ودليل المعلم</a></p>
+    <p class="footer-links"><a href="#home-about">عن المنصة</a> · <a href="#teacher">👩‍🏫 وضع المعلم</a> · <a href="#results">📊 رحلتي التعليمية</a></p>
   </footer>
 
-  <nav class="bottom-nav" aria-label="المراحل">
-    <a href="#solid" data-nav="solid"><span aria-hidden="true">🧊</span><span>صلبة</span></a>
-    <a href="#liquid" data-nav="liquid"><span aria-hidden="true">💧</span><span>سائلة</span></a>
-    <a href="#gas" data-nav="gas"><span aria-hidden="true">💨</span><span>غازية</span></a>
-    <a href="#changes" data-nav="changes"><span aria-hidden="true">🔥</span><span>التحولات</span></a>
-    <a href="#activity" data-nav="activity"><span aria-hidden="true">🎮</span><span>النشاط</span></a>
-    <a href="#challenge" data-nav="challenge"><span aria-hidden="true">🏆</span><span>التحدي</span></a>
-  </nav>
+  <nav class="bottom-nav" aria-label="المراحل"></nav>
 
   <div id="sr-live" class="sr-only" aria-live="polite"></div>
 </body>

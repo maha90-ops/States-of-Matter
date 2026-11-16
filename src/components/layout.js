@@ -31,7 +31,7 @@ export function stageNav(currentId) {
 
 /** رقم المرحلة بالكلمات */
 export function stageLabel(id) {
-  const words = ['الأولى', 'الثانية', 'الثالثة', 'الرابعة', 'الخامسة', 'السادسة'];
+  const words = ['الأولى', 'الثانية', 'الثالثة', 'الرابعة', 'الخامسة', 'السادسة', 'السابعة', 'الثامنة', 'التاسعة', 'العاشرة'];
   const i = STAGES.findIndex((s) => s.id === id);
   return `المرحلة ${words[i]}`;
 }

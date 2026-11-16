@@ -1,5 +1,5 @@
 /** الصفحة الرئيسية: المقدمة + خريطة الرحلة + نظرة على حالات المادة */
-import { html, esc, img } from '../core/dom.js';
+import { html, esc, img, num } from '../core/dom.js';
 import { store } from '../core/store.js';
 import { STAGES } from '../data/stages.js';
 import { IMG } from '../data/config.js';
@@ -28,7 +28,7 @@ export const homePage = {
             <h1 id="hero-title">رحلة في عالم <span class="grad">حالات المادة</span></h1>
             <p class="hero-sub">اكتشف أسرار المادة، وتعرّف إلى حالاتها وتحولاتها من خلال رحلة علمية ممتعة!</p>
             <div class="hero-actions">
-              <a class="btn btn-primary btn-lg" href="#${started ? firstOpen.route : 'solid'}">🚀 ${started ? 'أكمل الرحلة' : 'ابدأ الرحلة'}</a>
+              <a class="btn btn-primary btn-lg" href="#${started ? firstOpen.route : STAGES[0].route}">🚀 ${started ? 'أكمل الرحلة' : 'ابدأ الرحلة'}</a>
               <a class="btn btn-secondary btn-lg" href="#home-states">🔬 اكتشف حالات المادة</a>
             </div>
             <div class="hero-audio"></div>
@@ -53,7 +53,7 @@ export const homePage = {
         <section class="journey" id="home-journey" aria-labelledby="journey-title">
           <div class="section-head">
             <span class="eyebrow">🗺️ خريطة الرحلة</span>
-            <h2 id="journey-title">ست محطات تنتظرك!</h2>
+            <h2 id="journey-title">${num(STAGES.length)} محطات تنتظرك!</h2>
             <p>اضغط على أي محطة للانتقال إليها. ننصحك بالسير بالترتيب.</p>
           </div>
           <ol class="journey-map">
@@ -127,7 +127,11 @@ export const homePage = {
                 <li>بعد الزيارة الأولى يعمل الموقع بدون إنترنت، ويمكن تثبيته على الشاشة الرئيسية كتطبيق.</li>
                 <li>يدعم لوحة المفاتيح وقارئات الشاشة، ويحترم إعداد "تقليل الحركة".</li>
               </ul>
-              <button type="button" class="btn btn-secondary btn-reset">🔄 ابدأ من جديد لطالب آخر</button>
+              <div class="about-actions">
+                <a class="btn btn-primary" href="#teacher">👩‍🏫 وضع المعلم: الإجابات والزمن</a>
+                <a class="btn btn-secondary" href="#results">📊 لوحة إنجاز الطالب</a>
+                <button type="button" class="btn btn-secondary btn-reset">🔄 ابدأ من جديد لطالب آخر</button>
+              </div>
             </article>
           </div>
         </section>
