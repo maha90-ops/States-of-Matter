@@ -159,8 +159,48 @@ export function createAudioButton(key, label = 'استمع إلى الشرح') {
 
   exists(url).then((ok) => setState(ok ? 'idle' : 'missing'));
 
+  /**
+   * تشغيل تلقائي: يحاول التشغيل فورًا. المتصفحات تمنع الصوت قبل أي تفاعل من الزائر،
+   * فإن مُنع، يبدأ عند أول لمسة أو نقرة أو ضغطة مفتاح في أي مكان في الصفحة.
+   * لا يتدخل إذا كانت اللمسة على زر الصوت نفسه أو على رابط أو حقل كتابة.
+   * @param {Function} onStart يُستدعى عندما يبدأ التشغيل فعلًا
+   * @returns {Function} لإلغاء الانتظار
+   */
+  const GESTURES = ['pointerdown', 'keydown', 'touchend'];
+  let waiting = false;
+  const stopWaiting = () => {
+    waiting = false;
+    GESTURES.forEach((t) => document.removeEventListener(t, onGesture, true));
+  };
+  const startNow = (onStart) => ensure().play().then(() => {
+    audio.stopAll(player);
+    setState('playing');
+    stopWaiting();
+    onStart?.();
+    return true;
+  }).catch(() => false);
+  let pendingStart = null;
+  function onGesture(e) {
+    if (!waiting) return;
+    if (!el.isConnected || el.dataset.state === 'missing' || !settingsStore.get().sound) { stopWaiting(); return; }
+    if (e.target.closest?.('.audio-ctrl, a[href], input, textarea, select, .as-fab, .as-panel')) { stopWaiting(); return; }
+    if (a && !a.paused) { stopWaiting(); return; }
+    startNow(pendingStart);
+  }
+  el.autoplay = (onStart) => {
+    if (!settingsStore.get().sound) return stopWaiting;
+    pendingStart = onStart;
+    startNow(onStart).then((ok) => {
+      if (ok || !el.isConnected) return;
+      waiting = true;
+      GESTURES.forEach((t) => document.addEventListener(t, onGesture, true));
+    });
+    return stopWaiting;
+  };
+
   // إزالة المشغل عند حذف العنصر من الصفحة
   el.destroy = () => {
+    stopWaiting();
     player.stop();
     players.delete(player);
   };

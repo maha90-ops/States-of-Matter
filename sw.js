@@ -2,7 +2,7 @@
  * عامل الخدمة: يحفظ ملفات الموقع في الجهاز ليعمل بدون إنترنت داخل الصف.
  * عند تعديل أي ملف في الموقع، غيّر رقم VERSION حتى يحصل الطلاب على النسخة الجديدة.
  */
-const VERSION = 'v5';
+const VERSION = 'v6';
 const CACHE = `matter-journey-${VERSION}`;
 const FONT_CACHE = 'matter-journey-fonts';
 
@@ -48,6 +48,8 @@ const ASSETS = [
   "manifest.webmanifest",
   "src/components/a11yPanel.js",
   "src/components/adaptiveEngine.js",
+  "src/components/assistant.js",
+  "src/components/assistantBrain.js",
   "src/components/audioPlayer.js",
   "src/components/badges.js",
   "src/components/certificate.js",
@@ -69,6 +71,7 @@ const ASSETS = [
   "src/core/store.js",
   "src/data/activityQuestions.js",
   "src/data/adaptiveQuestions.js",
+  "src/data/assistantKB.js",
   "src/data/challengeQuestions.js",
   "src/data/config.js",
   "src/data/extras.js",

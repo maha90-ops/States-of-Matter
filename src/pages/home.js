@@ -147,7 +147,18 @@ export const homePage = {
       }
     });
 
-    el.querySelector('.hero-audio').appendChild(createAudioButton('intro', 'استمع إلى المقدمة'));
-    return el;
+    const intro = createAudioButton('intro', 'استمع إلى المقدمة');
+    el.querySelector('.hero-audio').appendChild(intro);
+
+    // تشغيل المقدمة تلقائيًا مرة واحدة في كل زيارة (لا تتكرر عند العودة إلى الرئيسية)
+    let stopAutoplay = () => {};
+    let played = false;
+    try { played = sessionStorage.getItem('intro-autoplayed') === '1'; } catch (_) { /* تجاهل */ }
+    if (!played && !location.hash.slice(1).startsWith('home-')) {
+      stopAutoplay = intro.autoplay(() => {
+        try { sessionStorage.setItem('intro-autoplayed', '1'); } catch (_) { /* تجاهل */ }
+      });
+    }
+    return { el, cleanup: () => stopAutoplay() };
   },
 };

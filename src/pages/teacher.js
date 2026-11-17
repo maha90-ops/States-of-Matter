@@ -4,6 +4,7 @@ import { store } from '../core/store.js';
 import { STAGES } from '../data/stages.js';
 import { TEACHER } from '../data/teacher.js';
 import { openModal } from '../components/modal.js';
+import { getUnanswered, clearUnanswered } from '../components/assistant.js';
 
 export const teacherPage = {
   title: 'وضع المعلم',
@@ -41,12 +42,29 @@ export const teacherPage = {
           </div>
         </section>
 
+        <section class="glass" aria-labelledby="ta">
+          <h2 id="ta" class="section-title">💬 أسئلة لم يعرف المساعد إجابتها</h2>
+          <p class="t-stat">المساعد «العالِم الصغير» يجيب من قاعدة معرفة محلية بلا إنترنت. هذه أسئلة طرحها الطلبة على هذا الجهاز ولم يجد لها إجابة؛ يمكنك إضافة إجاباتها في الملف <code>src/data/assistantKB.js</code>.</p>
+          <div data-unanswered></div>
+        </section>
+
         <div class="t-grid">
           <article class="glass about-card"><h3>💭 أسئلة التفكير</h3><ul class="check-list">${TEACHER.thinking.map((q) => `<li>${esc(q)}</li>`).join('')}</ul></article>
           <article class="glass about-card"><h3>⚠️ مفاهيم خاطئة شائعة</h3><ul class="check-list">${TEACHER.misconceptions.map((q) => `<li>${esc(q)}</li>`).join('')}</ul></article>
           <article class="glass about-card"><h3>💡 نصائح للتدريس</h3><ul class="check-list">${TEACHER.tips.map((q) => `<li>${esc(q)}</li>`).join('')}</ul></article>
         </div>
       </div>`);
+
+    const paintUnanswered = () => {
+      const list = getUnanswered();
+      const box = el.querySelector('[data-unanswered]');
+      box.innerHTML = list.length
+        ? `<ul class="t-unans">${list.map((x) => `<li><span>«${esc(x.q)}»</span><small>${new Date(x.at).toLocaleDateString('ar-EG')} · صفحة: ${esc(x.page)}</small></li>`).join('')}</ul>
+           <button type="button" class="btn btn-ghost btn-small" data-clear-unans>🧹 مسح القائمة</button>`
+        : '<p>✅ لا توجد أسئلة غير مجابة حتى الآن.</p>';
+      box.querySelector('[data-clear-unans]')?.addEventListener('click', () => { clearUnanswered(); paintUnanswered(); });
+    };
+    paintUnanswered();
 
     el.querySelector('[data-reset]').addEventListener('click', () => {
       openModal({

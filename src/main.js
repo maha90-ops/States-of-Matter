@@ -17,6 +17,7 @@ import { applySettings } from './core/settings.js';
 import { mountBadges } from './components/badges.js';
 import { openA11yPanel } from './components/a11yPanel.js';
 import { STAGES } from './data/stages.js';
+import { mountAssistant } from './components/assistant.js';
 
 applySettings();
 
@@ -44,6 +45,7 @@ document.querySelector('.bottom-nav').innerHTML = navLinks('bn-text');
 
 mountScoreboard();
 mountBadges();
+mountAssistant(router);
 document.querySelector('.btn-a11y')?.addEventListener('click', openA11yPanel);
 
 // تمييز الرابط الحالي في القائمة
